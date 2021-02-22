@@ -98,7 +98,8 @@ public class ConnectorNodeVisitor extends NodeVisitor {
         if (typeSymbol.isPresent() && typeSymbol.get() instanceof TypeDefinitionSymbol) {
             TypeSymbol rawType = getRawType(((TypeDefinitionSymbol) typeSymbol.get()).typeDescriptor());
             String typeName = String.format("%s:%s", typeSymbol.get().moduleID().toString(), typeSymbol.get().name());
-            if (rawType.typeKind() == TypeDescKind.RECORD || rawType.typeKind() == TypeDescKind.UNION) {
+            if (rawType.typeKind() == TypeDescKind.RECORD || rawType.typeKind() == TypeDescKind.UNION
+                    || rawType.typeKind() == TypeDescKind.ERROR) {
                 this.records.put(typeName, typeDefinitionNode);
             }
         }
